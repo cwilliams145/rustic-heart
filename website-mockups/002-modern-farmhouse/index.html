@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rustic Heart Farmstand — Cornville, AZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #1e1e1e;
+    --black: #0d0d0d;
+    --cream: #f5f0e8;
+    --cream-warm: #ebe3d5;
+    --terracotta: #c17a5b;
+    --terracotta-dark: #a8634a;
+    --sage: #7a8b6a;
+    --gold: #c8a557;
+    --white: #ffffff;
+    --gray: #8a8a8a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(13, 13, 13, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: padding 0.3s;
+  }
+
+  nav.scrolled { padding: 0.7rem 3rem; }
+
+  .nav-brand {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .nav-brand .brand-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--cream);
+    overflow: hidden;
+  }
+
+  .nav-brand .brand-mark img { width: 100%; height: 100%; object-fit: cover; }
+
+  .nav-brand .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+  }
+
+  .nav-brand .brand-sub {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.2rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--cream);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-links .nav-cta {
+    border: 1.5px solid var(--gold);
+    padding: 0.5rem 1.3rem;
+    border-radius: 2px;
+    color: var(--gold);
+    transition: all 0.2s;
+  }
+
+  .nav-links .nav-cta:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    height: 100vh;
+    min-height: 620px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, rgba(13,13,13,0.83), rgba(61,53,40,0.42)), url('../assets/debbie-stand.jpg') center 38% / cover no-repeat;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='%23c8a557' fill-opacity='0.04'%3E%3Cpath d='M50 80C30 65 15 45 15 30C15 18 25 12 35 12C42 12 47 16 50 22C53 16 58 12 65 12C75 12 85 18 85 30C85 45 70 65 50 80Z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+    background-size: 80px;
+  }
+
+  .hero-content {
+    text-align: center;
+    color: var(--cream);
+    z-index: 2;
+    padding: 0 2rem;
+    max-width: 900px;
+  }
+
+  .hero-kicker {
+    font-size: 0.8rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-kicker::before, .hero-kicker::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-desc {
+    font-size: 1.15rem;
+    color: rgba(245, 240, 232, 0.7);
+    max-width: 540px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-solid {
+    display: inline-block;
+    background: var(--terracotta);
+    color: var(--cream);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+
+  .btn-solid:hover { background: var(--terracotta-dark); transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: var(--cream);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(245,240,232,0.4);
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+
+  .btn-ghost:hover { border-color: var(--cream); background: rgba(245,240,232,0.08); }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(245,240,232,0.4);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-indicator svg {
+    display: block;
+    margin: 0.5rem auto 0;
+    width: 20px;
+    height: 20px;
+    stroke: rgba(245,240,232,0.4);
+    fill: none;
+    stroke-width: 2;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ===== MARQUEE ===== */
+  .marquee {
+    background: var(--charcoal);
+    overflow: hidden;
+    padding: 1.2rem 0;
+    border-top: 1px solid rgba(200,165,87,0.15);
+    border-bottom: 1px solid rgba(200,165,87,0.15);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 25s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-item {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .marquee-item::after {
+    content: '✦';
+    font-size: 0.7rem;
+    color: var(--terracotta);
+  }
+
+  @keyframes scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding: 6rem 3rem;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .section-intro {
+    color: var(--gray);
+    font-size: 1.05rem;
+    max-width: 580px;
+    margin-bottom: 3.5rem;
+    font-weight: 300;
+  }
+
+  /* ===== PRODUCTS ===== */
+  .products-section {
+    background: var(--cream-warm);
+  }
+
+  .products-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .products-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .products-sticky h2 { margin-bottom: 1rem; }
+
+  .products-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .product-row {
+    padding: 1.8rem 0;
+    border-top: 1px solid rgba(30,30,30,0.1);
+    display: flex;
+    align-items: start;
+    gap: 1.2rem;
+    cursor: pointer;
+    transition: padding-left 0.25s;
+  }
+
+  .product-row:hover { padding-left: 0.5rem; }
+
+  .product-row .num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--terracotta);
+    flex-shrink: 0;
+    width: 28px;
+    padding-top: 4px;
+  }
+
+  .product-row h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+    color: var(--charcoal);
+  }
+
+  .product-row p {
+    font-size: 0.9rem;
+    color: var(--gray);
+    font-weight: 300;
+  }
+
+  /* ===== SPLIT ABOUT ===== */
+  .about-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+  }
+
+  .about-visual {
+    background: linear-gradient(135deg, #7a8b6a, #5c4a3a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.92; }
+
+  .about-content {
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--white);
+  }
+
+  .about-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--charcoal);
+  }
+
+  .about-content h2 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .about-content p {
+    color: var(--gray);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+    font-size: 1.02rem;
+  }
+
+  .about-content .signature {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--terracotta);
+    margin-top: 1.5rem;
+  }
+
+  /* ===== FEATURE ===== */
+  .feature {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .feature-visual {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark));
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .feature-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.88; }
+
+  .feature-badge {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 90px;
+    height: 90px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    color: var(--charcoal);
+    line-height: 1.2;
+    transform: rotate(12deg);
+  }
+
+  .feature-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 1.2rem;
+    line-height: 1.1;
+  }
+
+  .feature-text h2 em { font-style: italic; color: var(--terracotta); }
+
+  .feature-text p { color: var(--gray); font-weight: 300; margin-bottom: 1.5rem; }
+
+  .feature-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(30,30,30,0.08);
+  }
+
+  .stat strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--terracotta);
+  }
+
+  .stat span {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* ===== VISIT ===== */
+  .visit-section {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 6rem 3rem;
+  }
+
+  .visit-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .visit-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .visit-info h2 em { font-style: italic; color: var(--gold); }
+
+  .visit-info .label {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .visit-info > p {
+    color: rgba(245,240,232,0.6);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    max-width: 460px;
+  }
+
+  .visit-details { display: flex; flex-direction: column; gap: 2rem; }
+
+  .detail-row {
+    display: flex;
+    gap: 1.2rem;
+    align-items: start;
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+  }
+
+  .detail-row .detail-icon {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .detail-row .detail-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .detail-row h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+    color: var(--cream);
+  }
+
+  .detail-row p {
+    color: rgba(245,240,232,0.55);
+    font-size: 0.92rem;
+    font-weight: 300;
+  }
+
+  .visit-map {
+    background: linear-gradient(135deg, #2a2520, #3d3528);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .visit-map::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='%23c8a557' fill-opacity='0.03'%3E%3Cpath d='M30 24c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 10c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+  }
+
+  .visit-map svg { width: 100px; height: 100px; z-index: 1; }
+
+  .visit-map h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--cream);
+    z-index: 1;
+  }
+
+  .visit-map p {
+    color: rgba(245,240,232,0.5);
+    font-size: 0.9rem;
+    font-weight: 300;
+    z-index: 1;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--black);
+    color: rgba(245,240,232,0.4);
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .footer-brand em { font-style: italic; color: var(--gold); }
+
+  .footer-sub {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-social a {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(245,240,232,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .footer-social a:hover { border-color: var(--gold); }
+  .footer-social svg { width: 18px; height: 18px; fill: rgba(245,240,232,0.5); transition: fill 0.2s; }
+  .footer-social a:hover svg { fill: var(--gold); }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    opacity: 0.5;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 2.8rem; }
+    .products-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .products-list { grid-template-columns: 1fr; }
+    .about-split { grid-template-columns: 1fr; }
+    .about-visual { min-height: 300px; }
+    .about-content { padding: 3rem 2rem; }
+    .feature { grid-template-columns: 1fr; gap: 2.5rem; }
+    .visit-inner { grid-template-columns: 1fr; }
+    .section { padding: 4rem 1.5rem; }
+    .products-inner { padding: 4rem 1.5rem; }
+    .visit-section { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-brand">
+    <div class="brand-mark"><img src="../assets/logo.jpg" alt="Rustic Heart logo"></div>
+    <div>
+      <div class="brand-name">The Rustic Heart</div>
+      <div class="brand-sub">Farmstand · Cornville, AZ</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#products">Goods</a></li>
+    <li><a href="#about">Story</a></li>
+    <li><a href="#feature">Specials</a></li>
+    <li><a href="#visit" class="nav-cta">Visit</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-kicker">Est. on Cornville Road</div>
+    <h1>Homemade yummies,<br>baked <em>from the heart</em></h1>
+    <p class="hero-desc">
+      Pies, cakes, cookies, jams, and farmstand treats — made from scratch with
+      real ingredients. Pull up to the stand, grab a sample, and taste the difference.
+    </p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-solid">Explore the Goods</a>
+      <a href="#visit" class="btn-ghost">Plan Your Visit</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    Scroll
+    <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">Fresh Pies</span>
+    <span class="marquee-item">Homemade Cakes</span>
+    <span class="marquee-item">Cookies & Treats</span>
+    <span class="marquee-item">Jams & Preserves</span>
+    <span class="marquee-item">Farm Eggs</span>
+    <span class="marquee-item">Fresh Coffee</span>
+    <span class="marquee-item">Gifts & More</span>
+    <span class="marquee-item">Fresh Pies</span>
+    <span class="marquee-item">Homemade Cakes</span>
+    <span class="marquee-item">Cookies & Treats</span>
+    <span class="marquee-item">Jams & Preserves</span>
+    <span class="marquee-item">Farm Eggs</span>
+    <span class="marquee-item">Fresh Coffee</span>
+    <span class="marquee-item">Gifts & More</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="products-section" id="products">
+  <div class="products-inner">
+    <div class="products-layout">
+      <div class="products-sticky">
+        <div class="section-label">What We Make</div>
+        <h2 class="section-title">From our <em>kitchen</em><br>to your table</h2>
+        <p class="section-intro">
+          Every pie, cake, and jar is made by hand in small batches — no preservatives,
+          no shortcuts. Just good old-fashioned homemade goodness, the way it oughta be.
+        </p>
+      </div>
+
+      <div class="products-list">
+        <div class="product-row">
+          <span class="num">01</span>
+          <div>
+            <h3>Fresh Pies</h3>
+            <p>Lemon Buttermilk, Pineapple Meringue, seasonal fruit — whole or by the slice</p>
+          </div>
+        </div>
+        <div class="product-row">
+          <span class="num">02</span>
+          <div>
+            <h3>Layer Cakes</h3>
+            <p>Carrot cake (gluten-free available!), coconut, and custom celebration cakes</p>
+          </div>
+        </div>
+        <div class="product-row">
+          <span class="num">03</span>
+          <div>
+            <h3>Cookies & Bars</h3>
+            <p>Fresh-baked daily — sugar cookies, brownies, bars, and seasonal treats</p>
+          </div>
+        </div>
+        <div class="product-row">
+          <span class="num">04</span>
+          <div>
+            <h3>Jams & Jellies</h3>
+            <p>Small-batch homemade preserves, pickles, and canned goods</p>
+          </div>
+        </div>
+        <div class="product-row">
+          <span class="num">05</span>
+          <div>
+            <h3>Fresh Coffee</h3>
+            <p>Canyon Blend & Aurora Blend — locally roasted, $22 per bag</p>
+          </div>
+        </div>
+        <div class="product-row">
+          <span class="num">06</span>
+          <div>
+            <h3>Farm Eggs</h3>
+            <p>Fresh from happy hens — come early, they sell out fast</p>
+          </div>
+        </div>
+        <div class="product-row">
+          <span class="num">07</span>
+          <div>
+            <h3>Unique Eats</h3>
+            <p>Soup & salad jar mixes, savory spreads, and homemade specialties</p>
+          </div>
+        </div>
+        <div class="product-row">
+          <span class="num">08</span>
+          <div>
+            <h3>Gifts & More</h3>
+            <p>Jar mixes, seasonal treats, and farmstand gifts for every occasion</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-split" id="about">
+  <div class="about-visual">
+    <img src="../assets/debbie-stand.jpg" alt="Debbie at The Rustic Heart Farmstand">
+  </div>
+  <div class="about-content">
+    <div class="section-label">The Baker</div>
+    <h2>Meet <em>Debbie</em>, the heart<br>behind the stand</h2>
+    <p>
+      Hi there! I'm Debbie Crick. What started as a love for canning and preserving
+      has grown into a little roadside spot on Cornville Road, full of homemade
+      pies, cakes, cookies, and all kinds of treats made from scratch.
+    </p>
+    <p>
+      Everything here is baked with care using real ingredients — no shortcuts,
+      no preservatives, just good old-fashioned homemade yummies. Come grab a
+      sample, chat a while, and take home something delicious.
+    </p>
+    <div class="signature">— Debbie</div>
+  </div>
+</section>
+
+<!-- FEATURE -->
+<section class="section" id="feature">
+  <div class="feature">
+    <div class="feature-visual">
+      <img src="../assets/carrot-cake-stock.jpg" alt="Carrot cake concept photo">
+      <div class="feature-badge">Gluten<br>Free<br>Available</div>
+    </div>
+    <div class="feature-text">
+      <div class="section-label">This Week's Spotlight</div>
+      <h2><em>Gluten-Free</em><br>Carrot Cake</h2>
+      <p>
+        A rustic carrot cake made with freshly grated carrots, warm spices, and
+        toasted pecans — topped with creamy frosting and coconut shavings.
+        Now available gluten-free. Reserve yours for the weekend!
+      </p>
+      <p style="color: var(--terracotta); font-weight: 500;">
+        Available Thursdays–Saturdays · Reserve ahead to guarantee yours
+      </p>
+      <div class="feature-stats">
+        <div class="stat">
+          <strong>100%</strong>
+          <span>From Scratch</span>
+        </div>
+        <div class="stat">
+          <strong>3 Days</strong>
+          <span>Open Weekly</span>
+        </div>
+        <div class="stat">
+          <strong>∞</strong>
+          <span>Samples!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit-section" id="visit">
+  <div class="visit-inner">
+    <div class="visit-info">
+      <div class="label">Come See Us</div>
+      <h2>Find the <em>stand</em></h2>
+      <p>
+        We're a roadside farmstand on Cornville Road — look for the "Homemade
+        Yummies" sign and the red heart balloons. Pull over, come say hi,
+        and grab a sample.
+      </p>
+      <div class="visit-details">
+        <div class="detail-row">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h3>Location</h3>
+            <p>Cornville Road, Cornville, Arizona<br>East of the Mercantile · West of Oak Creek Bridge</p>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <h3>Open Hours</h3>
+            <p>Thursday – Saturday<br>Come early for the best selection — and samples!</p>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </div>
+          <div>
+            <h3>Stay Connected</h3>
+            <p>Follow on Facebook for weekly specials,<br>seasonal offerings, and what's fresh on the stand</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="visit-map">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 80C30 65 15 45 15 30C15 18 25 12 35 12C42 12 47 16 50 22C53 16 58 12 65 12C75 12 85 18 85 30C85 45 70 65 50 80Z"
+              fill="none" stroke="#c8a557" stroke-width="3"/>
+        <circle cx="50" cy="42" r="8" fill="#c17a5b"/>
+      </svg>
+      <h3>Cornville, Arizona</h3>
+      <p>On Cornville Road<br>Look for the red heart balloons</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">The Rustic <em>Heart</em> Farmstand</div>
+  <div class="footer-sub">Homemade Yummies · Cornville, AZ</div>
+  <div class="footer-social">
+    <a href="#"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="#"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+  </div>
+  <div class="footer-copy">
+    © 2026 The Rustic Heart Farmstand · Cornville, Arizona · Homemade with love
+  </div>
+</footer>
+
+<script>
+  // Nav shrink on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+</script>
+
+</body>
+</html>
