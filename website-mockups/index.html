@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Rustic Heart Website Concepts</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      font-family: Georgia, serif;
+      color: #3d3027;
+      background: #faf3e7;
+    }
+    main {
+      width: min(42rem, 100%);
+      text-align: center;
+    }
+    h1 { margin-bottom: 0.5rem; }
+    p { color: #6f6257; }
+    nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    a {
+      display: block;
+      padding: 1.5rem;
+      border: 1px solid #d8c9b6;
+      border-radius: 0.75rem;
+      color: inherit;
+      background: #fffaf2;
+      text-decoration: none;
+    }
+    a:hover, a:focus-visible {
+      border-color: #b8533a;
+      box-shadow: 0 0.25rem 1rem rgba(92, 74, 58, 0.12);
+    }
+    strong { display: block; margin-bottom: 0.35rem; }
+    span { color: #7a6b5d; font-family: Arial, sans-serif; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>The Rustic Heart</h1>
+    <p>Choose a website concept to preview.</p>
+    <nav aria-label="Website concepts">
+      <a href="./001-rustic-warm/">
+        <strong>Rustic Warm</strong>
+        <span>Warm, welcoming farmstand style</span>
+      </a>
+      <a href="./002-modern-farmhouse/">
+        <strong>Modern Farmhouse</strong>
+        <span>Refined, contemporary farmhouse style</span>
+      </a>
+    </nav>
+  </main>
+</body>
+</html>
