@@ -23,12 +23,23 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     font-family: 'Inter', sans-serif;
     background: var(--cream);
     color: var(--charcoal);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; }
+  section[id], div[id] { scroll-margin-top: 74px; }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
   }
 
   /* ===== NAV ===== */
@@ -120,9 +131,20 @@
     color: var(--black);
   }
 
+  .menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(245,240,232,0.28);
+    background: transparent;
+    color: var(--cream);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
   /* ===== HERO ===== */
   .hero {
-    height: 100vh;
+    min-height: 100svh;
     min-height: 620px;
     position: relative;
     display: flex;
@@ -145,7 +167,7 @@
     color: var(--cream);
     z-index: 2;
     padding: 0 2rem;
-    max-width: 900px;
+    max-width: 980px;
   }
 
   .hero-kicker {
@@ -170,7 +192,7 @@
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 4.5rem;
+    font-size: clamp(3.5rem, 7vw, 5.5rem);
     font-weight: 400;
     line-height: 1.05;
     margin-bottom: 1.5rem;
@@ -291,7 +313,7 @@
 
   /* ===== SECTIONS ===== */
   .section {
-    padding: 6rem 3rem;
+    padding: 7rem 3rem;
     max-width: 1300px;
     margin: 0 auto;
   }
@@ -307,7 +329,7 @@
 
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
+    font-size: clamp(2.6rem, 4vw, 3.5rem);
     font-weight: 400;
     color: var(--charcoal);
     margin-bottom: 1rem;
@@ -335,13 +357,13 @@
   .products-inner {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 6rem 3rem;
+    padding: 7rem 3rem;
   }
 
   .products-layout {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 4rem;
+    gap: 5rem;
     align-items: start;
   }
 
@@ -350,7 +372,7 @@
   .products-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0;
+    column-gap: 2.5rem;
   }
 
   .product-row {
@@ -359,7 +381,6 @@
     display: flex;
     align-items: start;
     gap: 1.2rem;
-    cursor: pointer;
     transition: padding-left 0.25s;
   }
 
@@ -393,7 +414,7 @@
   .about-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 520px;
+    min-height: 600px;
   }
 
   .about-visual {
@@ -408,7 +429,7 @@
   .about-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.92; }
 
   .about-content {
-    padding: 5rem 4rem;
+    padding: 6rem clamp(3rem, 7vw, 7rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -417,7 +438,7 @@
 
   .about-content h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.4rem;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
     font-weight: 400;
     line-height: 1.15;
     margin-bottom: 1.5rem;
@@ -523,7 +544,7 @@
   .visit-section {
     background: var(--charcoal);
     color: var(--cream);
-    padding: 6rem 3rem;
+    padding: 7rem 3rem;
   }
 
   .visit-inner {
@@ -687,7 +708,24 @@
   /* ===== RESPONSIVE ===== */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
+    nav.scrolled { padding: 0.7rem 1.5rem; }
+    .menu-toggle { display: grid; place-items: center; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      background: rgba(13,13,13,0.97);
+      border-top: 1px solid rgba(245,240,232,0.1);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { display: block; padding: 0.9rem 0; }
+    .nav-links .nav-cta { margin-top: 0.5rem; text-align: center; }
     .hero h1 { font-size: 2.8rem; }
     .products-layout { grid-template-columns: 1fr; gap: 2rem; }
     .products-list { grid-template-columns: 1fr; }
@@ -700,29 +738,58 @@
     .products-inner { padding: 4rem 1.5rem; }
     .visit-section { padding: 4rem 1.5rem; }
   }
+
+  @media (max-width: 600px) {
+    .nav-brand .brand-sub { display: none; }
+    .hero { min-height: 720px; }
+    .hero-content { padding: 4rem 1.25rem 6rem; }
+    .hero h1 { font-size: clamp(2.7rem, 13vw, 3.5rem); }
+    .hero-kicker { letter-spacing: 0.24em; }
+    .hero-actions { display: grid; }
+    .hero-actions a { width: 100%; }
+    .marquee { padding: 0.9rem 0; }
+    .marquee-item { font-size: 1.1rem; }
+    .about-content { padding: 4rem 1.5rem; }
+    .feature-badge { right: -5px; }
+    .feature-stats { gap: 1.25rem; justify-content: space-between; }
+    .stat strong { font-size: 1.7rem; }
+    .stat span { font-size: 0.65rem; }
+    .visit-map { min-height: 360px; padding: 2rem; }
+    footer { padding: 3rem 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-brand">
+  <a href="#top" class="nav-brand">
     <div class="brand-mark"><img src="../assets/logo.jpg" alt="Rustic Heart logo"></div>
     <div>
       <div class="brand-name">The Rustic Heart</div>
       <div class="brand-sub">Farmstand · Cornville, AZ</div>
     </div>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="primary-navigation">
     <li><a href="#products">Goods</a></li>
     <li><a href="#about">Story</a></li>
     <li><a href="#feature">Specials</a></li>
     <li><a href="#visit" class="nav-cta">Visit</a></li>
   </ul>
+  <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation">☰</button>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="top">
   <div class="hero-content">
     <div class="hero-kicker">Est. on Cornville Road</div>
     <h1>Homemade yummies,<br>baked <em>from the heart</em></h1>
@@ -961,7 +1028,25 @@
 </footer>
 
 <script>
-  // Nav shrink on scroll
+  const menuButton = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.nav-links');
+
+  menuButton.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+    menuButton.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    menuButton.textContent = isOpen ? '×' : '☰';
+  });
+
+  menu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open navigation');
+      menuButton.textContent = '☰';
+    });
+  });
+
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('nav');
     if (window.scrollY > 50) nav.classList.add('scrolled');
