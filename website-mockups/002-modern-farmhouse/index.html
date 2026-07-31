@@ -372,28 +372,79 @@
   .products-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 2.5rem;
+    gap: 1.25rem;
   }
 
   .product-row {
-    padding: 1.8rem 0;
-    border-top: 1px solid rgba(30,30,30,0.1);
-    display: flex;
-    align-items: start;
-    gap: 1.2rem;
-    transition: padding-left 0.25s;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 118px 1fr;
+    align-items: stretch;
+    min-height: 138px;
+    background: rgba(255,255,255,0.52);
+    border: 1px solid rgba(30,30,30,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
   }
 
-  .product-row:hover { padding-left: 0.5rem; }
+  .product-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(30,30,30,0.08);
+  }
 
   .product-row .num {
+    position: absolute;
+    top: 0.65rem;
+    left: 0.65rem;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(13,13,13,0.78);
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 0.85rem;
-    color: var(--terracotta);
-    flex-shrink: 0;
-    width: 28px;
-    padding-top: 4px;
+    font-size: 0.72rem;
+    color: var(--cream);
+  }
+
+  .product-photo {
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+    background: #d8cebf;
+  }
+
+  .product-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.88) contrast(0.96);
+    transition: transform 0.45s;
+  }
+
+  .product-row:hover .product-photo img { transform: scale(1.04); }
+
+  .product-photo::after {
+    content: 'Photo placeholder';
+    position: absolute;
+    right: 0.45rem;
+    bottom: 0.45rem;
+    padding: 0.2rem 0.45rem;
+    background: rgba(13,13,13,0.72);
+    color: rgba(255,255,255,0.9);
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .product-copy {
+    align-self: center;
+    padding: 1.25rem;
   }
 
   .product-row h3 {
@@ -409,6 +460,9 @@
     color: var(--gray);
     font-weight: 300;
   }
+
+  .photo-coffee img { object-position: 50% 68%; }
+  .photo-gifts img { object-position: 50% 42%; }
 
   /* ===== SPLIT ABOUT ===== */
   .about-split {
@@ -728,7 +782,7 @@
     .nav-links .nav-cta { margin-top: 0.5rem; text-align: center; }
     .hero h1 { font-size: 2.8rem; }
     .products-layout { grid-template-columns: 1fr; gap: 2rem; }
-    .products-list { grid-template-columns: 1fr; }
+    .products-list { grid-template-columns: 1fr 1fr; }
     .about-split { grid-template-columns: 1fr; }
     .about-visual { min-height: 300px; }
     .about-content { padding: 3rem 2rem; }
@@ -749,6 +803,12 @@
     .hero-actions a { width: 100%; }
     .marquee { padding: 0.9rem 0; }
     .marquee-item { font-size: 1.1rem; }
+    .products-list { grid-template-columns: 1fr; }
+    .product-row { grid-template-columns: 104px 1fr; min-height: 126px; }
+    .product-copy { padding: 1rem; }
+    .product-row h3 { font-size: 1.2rem; }
+    .product-row p { font-size: 0.82rem; }
+    .product-photo::after { font-size: 0.48rem; }
     .about-content { padding: 4rem 1.5rem; }
     .feature-badge { right: -5px; }
     .feature-stats { gap: 1.25rem; justify-content: space-between; }
@@ -844,56 +904,80 @@
       <div class="products-list">
         <div class="product-row">
           <span class="num">01</span>
-          <div>
+          <figure class="product-photo">
+            <img src="../assets/key-lime-pies.jpg" alt="Placeholder photo of fresh key lime pies">
+          </figure>
+          <div class="product-copy">
             <h3>Fresh Pies</h3>
             <p>Lemon Buttermilk, Pineapple Meringue, seasonal fruit — whole or by the slice</p>
           </div>
         </div>
         <div class="product-row">
           <span class="num">02</span>
-          <div>
+          <figure class="product-photo">
+            <img src="../assets/carrot-cake-stock.jpg" alt="Placeholder photo of a homemade carrot layer cake">
+          </figure>
+          <div class="product-copy">
             <h3>Layer Cakes</h3>
             <p>Carrot cake (gluten-free available!), coconut, and custom celebration cakes</p>
           </div>
         </div>
         <div class="product-row">
           <span class="num">03</span>
-          <div>
+          <figure class="product-photo">
+            <img src="../assets/cookies-stock.jpg" alt="Placeholder photo of assorted homemade cookies">
+          </figure>
+          <div class="product-copy">
             <h3>Cookies & Bars</h3>
             <p>Fresh-baked daily — sugar cookies, brownies, bars, and seasonal treats</p>
           </div>
         </div>
         <div class="product-row">
           <span class="num">04</span>
-          <div>
+          <figure class="product-photo">
+            <img src="../assets/preserves-stock.jpg" alt="Placeholder photo of small-batch preserves in glass jars">
+          </figure>
+          <div class="product-copy">
             <h3>Jams & Jellies</h3>
             <p>Small-batch homemade preserves, pickles, and canned goods</p>
           </div>
         </div>
         <div class="product-row">
           <span class="num">05</span>
-          <div>
+          <figure class="product-photo photo-coffee">
+            <img src="../assets/debbie-stand.jpg" alt="Placeholder photo representing locally roasted farmstand coffee">
+          </figure>
+          <div class="product-copy">
             <h3>Fresh Coffee</h3>
             <p>Canyon Blend & Aurora Blend — locally roasted, $22 per bag</p>
           </div>
         </div>
         <div class="product-row">
           <span class="num">06</span>
-          <div>
+          <figure class="product-photo">
+            <img src="../assets/farm-eggs-stock.jpg" alt="Placeholder photo of farm-fresh eggs">
+          </figure>
+          <div class="product-copy">
             <h3>Farm Eggs</h3>
             <p>Fresh from happy hens — come early, they sell out fast</p>
           </div>
         </div>
         <div class="product-row">
           <span class="num">07</span>
-          <div>
+          <figure class="product-photo">
+            <img src="../assets/preserves-stock.jpg" alt="Placeholder photo of savory jar mixes and homemade specialties">
+          </figure>
+          <div class="product-copy">
             <h3>Unique Eats</h3>
             <p>Soup & salad jar mixes, savory spreads, and homemade specialties</p>
           </div>
         </div>
         <div class="product-row">
           <span class="num">08</span>
-          <div>
+          <figure class="product-photo photo-gifts">
+            <img src="../assets/debbie-stand.jpg" alt="Placeholder photo of gifts and seasonal treats at the farmstand">
+          </figure>
+          <div class="product-copy">
             <h3>Gifts & More</h3>
             <p>Jar mixes, seasonal treats, and farmstand gifts for every occasion</p>
           </div>
